@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import{ useState } from "react";
+import "./App.css";
+import { AppProvider, useApp } from "./context/AppContext";
+import Sidebar from "./components/Layout/Sidebar";
+import Topbar from "./components/Layout/Topbar";
+import Dashboard from "./pages/Dashboard";
+import Transactions from "./pages/Transactions";
+import Insights from "./pages/Insights";
 
-function App() {
+function AppContent() {
+  const { activePage } = useApp();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const Page = {
+    dashboard: Dashboard,
+    transactions: Transactions,
+    insights: Insights,
+  }[activePage] || Dashboard;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-shell">
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div
+        className="main-content"
+        onClick={() => sidebarOpen && setSidebarOpen(false)}
+      >
+        <Topbar onMenuOpen={() => setSidebarOpen(true)} />
+        <Page />
+      </div>
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+}
