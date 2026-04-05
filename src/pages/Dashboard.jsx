@@ -77,7 +77,7 @@ export default function Dashboard() {
 
       <div className="cards-grid">
         <SummaryCard
-          icon={<Wallet size={20} color="#6c63ff" />}
+          icon={<Wallet size={22} color="var(--accent)" />}
           label="Net Balance"
           value={fmt(balance)}
           valueClass="accent"
@@ -85,7 +85,7 @@ export default function Dashboard() {
           change={`Savings rate: ${savingsRate}%`}
         />
         <SummaryCard
-          icon={<TrendingUp size={20} color="#10b981" />}
+          icon={<TrendingUp size={22} color="var(--green)" />}
           label="Total Income"
           value={fmt(totalIncome)}
           valueClass="green"
@@ -93,7 +93,7 @@ export default function Dashboard() {
           change={`${transactions.filter(t => t.type === "income").length} transactions`}
         />
         <SummaryCard
-          icon={<TrendingDown size={20} color="#f43f5e" />}
+          icon={<TrendingDown size={22} color="var(--red)" />}
           label="Total Expenses"
           value={fmt(totalExpenses)}
           valueClass="red"
@@ -101,7 +101,7 @@ export default function Dashboard() {
           change={`${transactions.filter(t => t.type === "expense").length} transactions`}
         />
         <SummaryCard
-          icon={<ArrowUpRight size={20} color="#f59e0b" />}
+          icon={<ArrowUpRight size={22} color="var(--amber)" />}
           label="Transactions"
           value={transactions.length}
           valueClass=""
@@ -117,20 +117,20 @@ export default function Dashboard() {
             <AreaChart data={monthlyData}>
               <defs>
                 <linearGradient id="incomeGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--green)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--green)" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="expenseGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#f43f5e" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--red)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--red)" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis dataKey="month" tick={{ fontSize: 12, fill: "var(--text-muted)" }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: "var(--text-muted)" }} axisLine={false} tickLine={false} tickFormatter={(v) => fmt(v)} />
               <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="income" name="Income" stroke="#10b981" strokeWidth={2} fill="url(#incomeGrad)" />
-              <Area type="monotone" dataKey="expenses" name="Expenses" stroke="#f43f5e" strokeWidth={2} fill="url(#expenseGrad)" />
+              <Area type="monotone" dataKey="income" name="Income" stroke="var(--green)" strokeWidth={3} fill="url(#incomeGrad)" />
+              <Area type="monotone" dataKey="expenses" name="Expenses" stroke="var(--red)" strokeWidth={3} fill="url(#expenseGrad)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>

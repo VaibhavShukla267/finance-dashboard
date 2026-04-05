@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Finance Dashboard UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A bespoke, heavily-styled frontend dashboard designed for a high-end financial user experience. This application focuses on delivering structural elegance, expansive customization, and intuitive usability.
 
-## Available Scripts
+## Overview
+This project was built to address core requirements for a modern finance dashboard interface: visual excellence, robust state management, responsive interactions, and deep data insight capabilities. Instead of relying on standard templates or heavy UI libraries, this dashboard uses **pure, vanilla React and CSS** to construct a customized 'Glassmorphism' design language. 
 
-In the project directory, you can run:
+### Key Features
+* **6-Mode Theme Engine:** Moves far beyond simple "Light" and "Dark" mode by introducing six distinct fluid themes (*Light, Dark, Cyberpunk, Emerald, Midnight, Sunset*).
+* **Responsive Glassmorphism:** Features ultra-modern frosted glass UI elements (`backdrop-filter`) that beautifully adapt to any screen size (from 4K desktop to narrow smartphone viewports).
+* **Role-Based Access Simulation:** Includes a UI toggle allowing you to switch between `Admin` (full Add/Edit/Delete access) and `Viewer` (Read-only data access).
+* **Data Visualization:** Employs vibrant `recharts` components that are dynamically hooked into the CSS theme variables, ensuring charts perfectly integrate with the selected color scheme.
+* **Persistent State Management:** Features a lightweight Context API implementation storing simulated transaction data configurations inside browser `localStorage`.
+* **Deep Interaction:** Offers real-time transaction searching, multi-axis sorting, and comprehensive category/type filtering.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Setup Instructions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project is built using Create React App. To get started locally:
 
-### `npm test`
+1. **Clone & Navigate**
+   Ensure you are in the project root directory.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Start the Development Server**
+   ```bash
+   npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧠 Technical Architecture & Approach
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. State Management & Data Flow
+I opted for **React Context API** (`AppContext.js`) because it offers a native, clean solution for a dashboard of this size without the boilerplate of Redux.
+* **Persistent Storage:** The Context automatically synchronizes state changes to `localStorage` via a `useEffect` hook, preserving simulated transactions and the active visual theme across sessions.
+* **Centralized Logic:** Derivations like `totalIncome`, `totalExpenses`, and current balances are computed within the Context provider, feeding clean props directly to the presentation layers.
 
-### `npm run eject`
+### 2. Styling Rules & CSS Variables
+I intentionally avoided UI component libraries (like MUI) and utility frameworks (like Tailwind) to demonstrate strong classical CSS proficiency. 
+* All styling is governed exclusively by `App.css`.
+* The design uses a **CSS Custom Property (Variable) Token System**. A central parameter block manages spacing, radiuses, shadows, and over 14 color tokens.
+* Switching themes via the UI instantly updates `data-theme` on the root DOM element, triggering a rapid, animated recoloring of the entire application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Component Modularity
+* **Pages (`src/pages/`):** Separated into massive distinct views (`Dashboard.jsx`, `Insights.jsx`, `Transactions.jsx`) for dedicated routing (currently simulated via state).
+* **UI Elements (`src/components/UI/`):** Contains modular components like the responsive `TransactionModal.jsx`.
+* **Layouts (`src/components/Layout/`):** Contains the `Topbar.jsx` and `Sidebar.jsx`, heavily optimized for mobile collapsing and contextual controls.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📈 Dashboard Capabilities Breakdown
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Dashboard Overview
+* Renders real-time financial aggregates (Net Balance, Savings Rate, total transaction counts).
+* Embeds a multi-gradient Area Chart tracking 6-month historical income versus expenses.
+* Presents an interactive Doughnut Chart mapping categorical spending habits.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Transactions Table
+* Rich grid mapping comprehensive data.
+* **Smart Search:** Live character filtering by description.
+* **Sorting Capabilities:** Configurable Ascending/Descending sorts over Dates, Descriptions, and Amounts.
+* **Filtering:** Categorical dropdowns cleanly isolating specific spend types.
 
-## Learn More
+### Insights Engine
+* Aggregates standard data into actionable observations.
+* Computes savings percentage thresholds to offer gamified encouragement.
+* Compares current month metrics to the prior month's burn rate.
+* Deploys progress-bar breakdowns charting the categorical hierarchy. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Thank you for reviewing! Feel free to switch directly to the "Cyberpunk" theme and click around the responsive layout.*

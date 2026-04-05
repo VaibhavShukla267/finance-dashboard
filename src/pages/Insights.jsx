@@ -140,7 +140,7 @@ export default function Insights() {
       </div>
 
       {/* Category breakdown */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 20 }}>
+      <div className="split-grid">
         <div className="chart-card">
           <div className="chart-title">Monthly Comparison</div>
           <ResponsiveContainer width="100%" height={250}>
@@ -150,8 +150,8 @@ export default function Insights() {
               <YAxis tick={{ fontSize: 12, fill: "var(--text-muted)" }} axisLine={false} tickLine={false} tickFormatter={fmt} />
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: 12 }} />
-              <Bar dataKey="income" name="Income" fill="#10b981" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="expenses" name="Expenses" fill="#f43f5e" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="income" name="Income" fill="var(--green)" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="expenses" name="Expenses" fill="var(--red)" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -190,7 +190,7 @@ export default function Insights() {
             <XAxis dataKey="month" tick={{ fontSize: 12, fill: "var(--text-muted)" }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fontSize: 12, fill: "var(--text-muted)" }} axisLine={false} tickLine={false} tickFormatter={fmt} />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="balance" name="Net Balance" fill="#6c63ff" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="balance" name="Net Balance" fill="var(--accent)" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

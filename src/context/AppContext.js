@@ -7,7 +7,7 @@ const STORAGE_KEY = "financeapp_transactions";
 
 export function AppProvider({ children }) {
   const [role, setRole] = useState("admin"); // "admin" | "viewer"
-  const [darkMode, setDarkMode] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem("financeapp_theme") || "light");
   const [activePage, setActivePage] = useState("dashboard");
 
   const [transactions, setTransactions] = useState(() => {
@@ -28,8 +28,9 @@ export function AppProvider({ children }) {
   }, [transactions]);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+    localStorage.setItem("financeapp_theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const addTransaction = (tx) => {
     const newTx = { ...tx, id: Date.now() };
@@ -58,7 +59,7 @@ export function AppProvider({ children }) {
     <AppContext.Provider
       value={{
         role, setRole,
-        darkMode, setDarkMode,
+        theme, setTheme,
         activePage, setActivePage,
         transactions, addTransaction, editTransaction, deleteTransaction,
         filters, setFilters,
